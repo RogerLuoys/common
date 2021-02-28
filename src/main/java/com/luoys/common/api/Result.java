@@ -3,13 +3,16 @@ package com.luoys.common.api;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor  // 需要这个无参构造函数，否则Feign会报错
-public class Result<T> {
+public class Result<T> implements Serializable {
     private int code;
     private boolean success;
     private String message;
     private T data;
+    private static final long serialVersionUID = 1L;
 
     Result (int code, boolean success, String message, T data) {
         this.code = code;
