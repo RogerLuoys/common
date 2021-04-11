@@ -25,6 +25,7 @@ public class Result<T> implements Serializable {
         Result<T> result = new Result(1, true, "成功", data);
         if (data == null) {
             result.setCode(-1);
+            result.setData(null);
             result.setSuccess(false);
             result.setMessage("业务异常");
         }
@@ -41,18 +42,13 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static <T> Result error (T data) {
-        Result<T> result = new Result(0, false, "失败", data);
+    public static <T> Result error (String message) {
+        Result<T> result = new Result(0, false, message, null);
         return result;
     }
 
-    public static <T> Result error (T data, String message) {
-        Result<T> result = new Result(0, false, message, data);
-        return result;
-    }
-
-    public static <T> Result error (T data, int code) {
-        Result<T> result = new Result(code, false, "失败", data);
+    public static <T> Result error (String message, int code) {
+        Result<T> result = new Result(code, false, message, null);
         return result;
     }
 }
